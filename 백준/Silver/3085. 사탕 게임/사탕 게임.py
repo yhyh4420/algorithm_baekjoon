@@ -1,37 +1,37 @@
 n = int(input())
 
-candy = [list(input()) for _ in range(n)]
+m = []
+for _ in range(n):
+    m.append(list(input()))
 
+answer = 1
 def max_count():
-    max_cnt = 1
+    max_count = 1
     for i in range(n):
-        count = 1
-        for j in range(1,n):
-            if candy[i][j-1] == candy[i][j]:
-                count += 1
+        garo_count = 1
+        for j in range(n-1):
+            if m[i][j] == m[i][j+1]:
+                garo_count+=1
             else:
-                count = 1
-            max_cnt = max(max_cnt, count)
+                garo_count=1
+            max_count = max(max_count, garo_count)
 
-        count = 1
-        for j in range(1,n):
-            if candy[j-1][i] == candy[j][i]:
-                count += 1
+        sero_count = 1
+        for j in range(n-1):
+            if m[j][i] == m[j+1][i]:
+                sero_count+=1
             else:
-                count = 1
-            max_cnt = max(max_cnt, count)
-
-    return max_cnt
-
+                sero_count=1
+            max_count = max(max_count, sero_count)
+    return max_count
 
 answer = 1
 for i in range(n):
-    for j in range(1,n):
-        candy[i][j-1], candy[i][j] = candy[i][j], candy[i][j-1]
+    for j in range(n-1):
+        m[i][j], m[i][j+1] = m[i][j+1], m[i][j]
         answer = max(answer, max_count())
-        candy[i][j - 1], candy[i][j] = candy[i][j], candy[i][j - 1]
-        candy[j-1][i], candy[j][i] = candy[j][i], candy[j-1][i]
+        m[i][j], m[i][j + 1] = m[i][j + 1], m[i][j]
+        m[j][i], m[j+1][i] = m[j+1][i], m[j][i]
         answer = max(answer, max_count())
-        candy[j - 1][i], candy[j][i] = candy[j][i], candy[j - 1][i]
-
+        m[j][i], m[j + 1][i] = m[j + 1][i], m[j][i]
 print(answer)
