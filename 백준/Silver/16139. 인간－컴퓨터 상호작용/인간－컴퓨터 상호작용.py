@@ -1,9 +1,10 @@
 import sys
-input = sys.stdin.readline
 
-string = input()
+data = sys.stdin.read().splitlines()
+
+string = data[0].strip()
 length = len(string)
-q = int(input())
+q = int(data[1])
 
 memory = {}
 memory_keys = set(string)
@@ -21,9 +22,9 @@ for key in memory_keys:
 def solution(c, start, end):
     return memory[c][end+1]-memory[c][start]
 
-for _ in range(q):
-    alphabet, s, e = input().split()
+lines = data[2:]
+
+for line in lines:
+    alphabet, s, e = line.split()
     s, e = int(s), int(e)
-    if alphabet not in memory_keys:
-        print(0)
-    else: print(solution(alphabet, s, e))
+    print(solution(alphabet, s, e)) if alphabet in memory else print(0)
