@@ -3,12 +3,12 @@ import java.util.*;
 class Solution {
     public int solution(int[] order) {
         int answer = 0;
-        Stack<Integer> assistBelt = new Stack<>();
+        Stack<Integer> stack = new Stack<>();
         for(int i= 1; i<=order.length; i++){
-            assistBelt.push(i);
-            while(!assistBelt.empty() && order[answer] == assistBelt.peek()){
+            stack.push(i);
+            while(!stack.empty() && order[answer] == stack.peek()){
                 answer++;
-                assistBelt.pop();
+                stack.pop();
             }
         }
         return answer;
