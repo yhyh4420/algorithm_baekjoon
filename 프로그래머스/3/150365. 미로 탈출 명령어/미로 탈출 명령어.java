@@ -5,7 +5,6 @@ class Solution {
     int[] dx = {1, 0, 0, -1};
     int[] dy = {0, -1, 1, 0};
     char[] chr = {'d','l','r','u'};
-    List<String> answerList = new ArrayList<>();
     String answer = "impossible";
     boolean found = false;
     public String solution(int n, int m, int x, int y, int r, int c, int k) {
